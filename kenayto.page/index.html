@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kenayto</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+
+  /* 🔵 СИНІЙ ГРАДІЄНТ */
+  background: radial-gradient(circle at top, #1e3cff 0%, #0b0f2a 60%, #050816 100%);
+}
+
+/* АВАТАР */
+.avatar {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+
+  border-radius: 35px; /* 🔵 округлені краї */
+  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+  margin-bottom: 25px;
+  transition: 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.03);
+}
+
+/* ІМʼЯ */
+h1 {
+  font-size: 64px;
+  margin-bottom: 35px;
+}
+
+/* КНОПКИ */
+.icons {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.icon {
+  height: 50px;
+  width: auto;
+  transition: 0.25s ease;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+/* 🔥 ПІДСВІЧУВАННЯ */
+.icon:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+/* 📱 АДАПТИВ */
+@media (max-width: 480px) {
+  .avatar {
+    width: 150px;
+    height: 150px;
+  }
+
+  h1 {
+    font-size: 42px;
+  }
+
+  .icon {
+    height: 40px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<img src="Kenayto.png" alt="Kenayto" class="avatar">
+
+<h1>Kenayto</h1>
+
+<div class="icons">
+
+  <a href="https://www.instagram.com/_kenayto_" target="_blank">
+    <img src="icons/instagram.png" class="icon">
+  </a>
+
+  <a href="https://t.me/+MgJE8cCgxGxhZTE6" target="_blank">
+    <img src="icons/telegram.png" class="icon">
+  </a>
+
+  <a href="https://www.tiktok.com/@_kenayto_" target="_blank">
+    <img src="icons/tiktok.png" class="icon">
+  </a>
+
+  <a href="https://www.youtube.com/@KenayTo22" target="_blank">
+    <img src="icons/youtube.png" class="icon">
+  </a>
+
+</div>
+
+</body>
+</html>
