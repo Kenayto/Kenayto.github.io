@@ -6,136 +6,314 @@
 <title>Kenayto</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
-
-  opacity: 0;
-  animation: pageIn 1.2s ease forwards;
-
-  background:
-    url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXdzNGpudzFybGhkYTlnN3ZnbHhpdmU3c3lkYnFwbGU4OWUyZjNudiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jaOXKCxtBPLieRLI0c/giphy.gif) repeat,
-    radial-gradient(circle at top, #1e3cff 0%, #0b0f2a 60%, #050816 100%);
-}
-
-/* АВАТАР */
-.avatar {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-
-  border-radius: 35px;
-  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
-  margin-bottom: 25px;
-  transition: 0.3s ease;
-}
-
-.avatar:hover {
-  transform: scale(1.03);
-}
-
-/* ІМʼЯ */
-h1 {
-  font-size: 48px;
-  margin: 20px 0 30px 0;
-  background: linear-gradient(90deg, #1e3cff, #4da3ff, #ffffff, #4da3ff, #1e3cff);
-  background-size: 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 6s linear infinite;
-}
-
-@keyframes shine {
-  0% { background-position: 300%; }
-  100% { background-position: 0%; }
-}
-
-@keyframes pageIn {
-  to { opacity: 1; }
-}
-
-/* КНОПКИ */
-.icons {
-  display: flex;
-  gap: 25px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* підсвітку на посиланні */
-.icons a {
-  display: inline-block;
-  border-radius: 14px;
-  transition: 0.25s ease;
-}
-
-/* підсвітка при наведенні */
-.icons a:hover {
-  transform: translateY(-6px) scale(1.08);
-  filter: brightness(1.2);
-  box-shadow: 0 0 22px rgba(255,255,255,0.65);
-}
-
-/* картинка всередині */
-.icon {
-  height: 50px;
-  width: auto;
-  cursor: pointer;
-  border-radius: 12px;
-  display: block;
-}
-
-/* АДАПТИВ */
-@media (max-width: 480px) {
-  .avatar {
-    width: 150px;
-    height: 150px;
+  :root{
+    --blue:#1e3cff;
+    --blue2:#4da3ff;
+    --bg1:#0b0f2a;
+    --bg2:#050816;
   }
 
+  /* Замість скролу body — скрол буде в .container */
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    height: 100%;
+    overflow: hidden;
+
+    opacity: 0;
+    animation: pageIn 1.2s ease forwards;
+
+    background:
+      url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXdzNGpudzFybGhkYTlnN3ZnbHhpdmU3c3lkYnFwbGU4OWUyZjNudiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jaOXKCxtBPLieRLI0c/giphy.gif) repeat,
+      radial-gradient(circle at top, var(--blue) 0%, var(--bg1) 60%, var(--bg2) 100%);
+  }
+
+  @keyframes pageIn {
+    to { opacity: 1; }
+  }
+
+  /* Контейнер з двома “листками” */
+  .container{
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  /* Кожна секція — 1 екран */
+  .section{
+    height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 28px 18px;
+  }
+
+  /* Внутрішній блок (для анімації появи) */
+  .inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    opacity: 0;
+    transform: translateY(14px);
+    transition: 0.7s ease;
+  }
+
+  .section.is-active .inner{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Аватар */
+  .avatar {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 35px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    transition: 0.3s ease;
+  }
+
+  .avatar:hover {
+    transform: scale(1.03);
+  }
+
+  /* Нік */
   h1 {
-    font-size: 42px;
+    font-size: 48px;
+    margin: 10px 0 8px 0;
+    background: linear-gradient(90deg, var(--blue), var(--blue2), #ffffff, var(--blue2), var(--blue));
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 6s linear infinite;
+  }
+
+  @keyframes shine {
+    0% { background-position: 300%; }
+    100% { background-position: 0%; }
+  }
+
+  /* Кнопки */
+  .icons {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .icons a {
+    display: inline-block;
+    border-radius: 14px;
+    transition: 0.25s ease;
+  }
+
+  .icons a:hover {
+    transform: translateY(-6px) scale(1.08);
+    filter: brightness(1.2);
+    box-shadow: 0 0 22px rgba(255,255,255,0.65);
   }
 
   .icon {
-    height: 40px;
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    border-radius: 12px;
+    display: block;
   }
-}
+
+  /* Підказка про скрол */
+  .hint{
+    margin-top: 10px;
+    font-size: 13px;
+    opacity: 0.7;
+  }
+
+  /* Resume card */
+  .resume-card{
+    width: min(860px, 94vw);
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 22px;
+    padding: 22px 18px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: left;
+    box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+  }
+
+  .resume-title{
+    font-size: 28px;
+    margin: 0 0 8px 0;
+  }
+
+  .resume-sub{
+    margin: 0 0 14px 0;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 10px;
+  }
+
+  .block h3{
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    opacity: 0.9;
+  }
+
+  .block ul{
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.55;
+    opacity: 0.9;
+  }
+
+  .contacts{
+    margin-top: 14px;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .pill{
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(30,60,255,0.18);
+    border: 1px solid rgba(77,163,255,0.25);
+    margin-right: 8px;
+    margin-top: 6px;
+    font-size: 13px;
+  }
+
+  /* Адаптив */
+  @media (max-width: 720px){
+    .grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .avatar { width: 150px; height: 150px; }
+    h1 { font-size: 42px; }
+    .icon { height: 40px; }
+  }
 </style>
 </head>
 
 <body>
 
-<img src="Kenayto.png" alt="Kenayto" class="avatar">
+<div class="container" id="container">
 
-<h1>Kenayto</h1>
+  <!-- ЕКРАН 1: LINKS -->
+  <section class="section is-active" id="links">
+    <div class="inner">
+      <img src="Kenayto.png" alt="Kenayto" class="avatar">
+      <h1>Kenayto</h1>
 
-<div class="icons">
+      <div class="icons">
+        <a href="https://www.instagram.com/_kenayto_" target="_blank" rel="noopener noreferrer">
+          <img src="icons/instagram.png" class="icon" alt="Instagram">
+        </a>
 
-  <a href="https://www.instagram.com/_kenayto_" target="_blank" rel="noopener noreferrer">
-    <img src="icons/instagram.png" class="icon" alt="Instagram">
-  </a>
+        <a href="https://t.me/+MgJE8cCgxGxhZTE6" target="_blank" rel="noopener noreferrer">
+          <img src="icons/telegram.png" class="icon" alt="Telegram">
+        </a>
 
-  <a href="https://t.me/+MgJE8cCgxGxhZTE6" target="_blank" rel="noopener noreferrer">
-    <img src="icons/telegram.png" class="icon" alt="Telegram">
-  </a>
+        <a href="https://www.tiktok.com/@_kenayto_" target="_blank" rel="noopener noreferrer">
+          <img src="icons/tiktok.png" class="icon" alt="TikTok">
+        </a>
 
-  <a href="https://www.tiktok.com/@_kenayto_" target="_blank" rel="noopener noreferrer">
-    <img src="icons/tiktok.png" class="icon" alt="TikTok">
-  </a>
+        <a href="https://www.youtube.com/@KenayTo22" target="_blank" rel="noopener noreferrer">
+          <img src="icons/youtube.png" class="icon" alt="YouTube">
+        </a>
+      </div>
 
-  <a href="https://www.youtube.com/@KenayTo22" target="_blank" rel="noopener noreferrer">
-    <img src="icons/youtube.png" class="icon" alt="YouTube">
-  </a>
+      <div class="hint">Scroll down ↓ for resume</div>
+    </div>
+  </section>
+
+  <!-- ЕКРАН 2: RESUME -->
+  <section class="section" id="resume">
+    <div class="inner">
+      <div class="resume-card">
+        <div class="resume-title">Danyil Shunynets (Kenayto)</div>
+        <div class="resume-sub">
+          Video Editor • Web Developer • IT Student<br>
+          I create edits for TikTok/Reels/YouTube and also build clean, responsive websites.
+        </div>
+
+        <div>
+          <span class="pill">HTML5</span>
+          <span class="pill">CSS3</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">Git/GitHub</span>
+          <span class="pill">Responsive Design</span>
+          <span class="pill">Video Editing</span>
+        </div>
+
+        <div class="grid">
+          <div class="block">
+            <h3>What I can do (Video)</h3>
+            <ul>
+              <li>TikTok / Reels / Shorts edits</li>
+              <li>Sound sync, transitions, effects</li>
+              <li>Color grading</li>
+              <li>Fast delivery & revisions</li>
+            </ul>
+          </div>
+
+          <div class="block">
+            <h3>What I can do (Web)</h3>
+            <ul>
+              <li>Landing pages / Link-in-bio pages</li>
+              <li>Portfolio websites</li>
+              <li>Animations, clean UI</li>
+              <li>Deploy to GitHub Pages</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="contacts">
+          <b>Contact:</b><br>
+          Telegram: <b>@kenayto</b><br>
+          Email: <b>daniilshunynets@gmail.com</b>
+        </div>
+      </div>
+
+      <div class="hint">Scroll up ↑ to go back</div>
+    </div>
+  </section>
 
 </div>
+
+<script>
+  const container = document.getElementById('container');
+  const sections = [...document.querySelectorAll('.section')];
+
+  function updateActive() {
+    const mid = container.scrollTop + container.clientHeight / 2;
+    sections.forEach(sec => {
+      const top = sec.offsetTop;
+      const bottom = top + sec.clientHeight;
+      sec.classList.toggle('is-active', mid >= top && mid < bottom);
+    });
+  }
+
+  container.addEventListener('scroll', updateActive);
+  updateActive();
+</script>
 
 </body>
 </html>
