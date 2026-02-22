@@ -30,7 +30,7 @@ body {
     center center / cover no-repeat,
     radial-gradient(circle at top, var(--blue) 0%, var(--bg1) 60%, var(--bg2) 100%);
 
-    background-attachment: fixed;
+  background-attachment: fixed;
 }
 
   @keyframes pageIn { to { opacity: 1; } }
@@ -110,7 +110,6 @@ body {
     transition: 0.25s ease;
   }
 
-  /* ✅ 2) Підсвітка кнопок сильніша + в твоїх кольорах */
   .icons a:hover {
     transform: translateY(-6px) scale(1.08);
     filter: brightness(1.15);
@@ -136,8 +135,6 @@ body {
 
   .resume-card{
     width: min(860px, 94vw);
-
-    /* ✅ 3) Трохи темніша/контрастніша картка для читабельності */
     background: rgba(10, 0, 20, 0.45);
     border: 1px solid rgba(255,255,255,0.18);
     border-radius: 22px;
@@ -186,7 +183,6 @@ body {
     line-height: 1.6;
   }
 
-  /* ✅ 4) Пілли під твою фіолетову палітру */
   .pill{
     display: inline-block;
     padding: 6px 10px;
@@ -216,24 +212,27 @@ body {
 
   <section class="section is-active" id="links">
     <div class="inner">
-      <img src="Kenayto.png" alt="Kenayto" class="avatar">
+      <!-- ✅ ВИПРАВЛЕНО: у репо файл Kenayto.PNG (великими) -->
+      <img src="Kenayto.PNG" alt="Kenayto" class="avatar">
+
       <h1>Kenayto</h1>
 
       <div class="icons">
         <a href="https://www.instagram.com/_kenayto_" target="_blank" rel="noopener noreferrer">
-          <img src="icons/instagram.jpg" class="icon" alt="Instagram">
+          <!-- ✅ ВИПРАВЛЕНО: у папці icons назви з великих літер -->
+          <img src="icons/Instagram.jpg" class="icon" alt="Instagram">
         </a>
 
         <a href="https://t.me/+MgJE8cCgxGxhZTE6" target="_blank" rel="noopener noreferrer">
-          <img src="icons/telegram.jpg" class="icon" alt="Telegram">
+          <img src="icons/Telegram.jpg" class="icon" alt="Telegram">
         </a>
 
         <a href="https://www.tiktok.com/@_kenayto_" target="_blank" rel="noopener noreferrer">
-          <img src="icons/tiktok.jpg" class="icon" alt="TikTok">
+          <img src="icons/TikTok.jpg" class="icon" alt="TikTok">
         </a>
 
         <a href="https://www.youtube.com/@KenayTo22" target="_blank" rel="noopener noreferrer">
-          <img src="icons/youtube.jpg" class="icon" alt="YouTube">
+          <img src="icons/YouTube.jpg" class="icon" alt="YouTube">
         </a>
       </div>
 
