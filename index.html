@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>𝐊𝐄𝐍𝐀𝐘𝐓𝐎</title>
 
+<!-- Google tag (іформація особи)-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<meta property="og:title" content="Kenayto">
+<meta property="og:description" content="Video Editor • Web Developer • Links & Resume">
+<meta property="og:image" content="https://kenayto.github.io/Kenayto.PNG">
+<meta property="og:url" content="https://kenayto.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
 <style>
   :root{
     --blue:#7a2cff;
@@ -70,15 +88,24 @@ body {
   }
 
   .avatar {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 35px;
-    box-shadow: 0 25px 80px rgba(0,0,0,0.6);
-    transition: 0.3s ease;
-  }
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 35px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 
-  .avatar:hover { transform: scale(1.03); }
+
+  box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+}
+
+.avatar:hover {
+  transform: scale(1.06);
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.7),
+    0 0 25px rgba(176,102,255,0.6),
+    0 0 60px rgba(122,44,255,0.45);
+}
 
   h1 {
     font-size: 48px;
@@ -194,6 +221,30 @@ body {
     font-size: 13px;
   }
 
+  .copy-btn{
+  margin-left: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(176,102,255,0.4);
+  background: rgba(122,44,255,0.25);
+  color: white;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.copy-btn:hover{
+  background: rgba(176,102,255,0.45);
+  box-shadow:
+    0 0 10px rgba(176,102,255,0.5),
+    0 0 20px rgba(122,44,255,0.3);
+}
+
+.copy-btn.copied{
+  background: rgba(0,200,120,0.35);
+  border: 1px solid rgba(0,255,160,0.6);
+}
+
   @media (max-width: 720px){
     .grid{ grid-template-columns: 1fr; }
   }
@@ -212,14 +263,12 @@ body {
 
   <section class="section is-active" id="links">
     <div class="inner">
-      <!-- ВИПРАВЛЕНО: у репо файл Kenayto.PNG (великими) -->
       <img src="Kenayto.PNG" alt="Kenayto" class="avatar">
 
       <h1>꧁༺𝐊𝐄𝐍𝐀𝐘𝐓𝐎༻꧂</h1>
 
       <div class="icons">
         <a href="https://www.instagram.com/_kenayto_" target="_blank" rel="noopener noreferrer">
-          <!-- ВИПРАВЛЕНО: у папці icons назви з великих літер -->
           <img src="icons/Instagram.jpg" class="icon" alt="Instagram">
         </a>
 
@@ -283,7 +332,9 @@ body {
         <div class="contacts">
           <b>Contact:</b><br>
           Telegram: <b>@kenayto</b><br>
-          Email: <b>daniilshunynets@gmail.com</b>
+          Email:
+          <b id="emailText">daniilshunynets@gmail.com</b>
+          <button class="copy-btn" id="copyBtn" type="button" onclick="copyEmail()">Copy</button>
         </div>
       </div>
 
@@ -308,8 +359,45 @@ body {
 
   container.addEventListener('scroll', updateActive);
   updateActive();
+
+  async function copyEmail() {
+    const emailEl = document.getElementById("emailText");
+    const btn = document.getElementById("copyBtn");
+    const email = (emailEl?.innerText || "").trim();
+
+    if (!email) return;
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = email;
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        textarea.style.top = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+
+      btn.classList.add("copied");
+      btn.textContent = "Copied ✓";
+
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        btn.textContent = "Copy";
+      }, 1600);
+
+    } catch (err) {
+      btn.textContent = "Blocked";
+      setTimeout(() => (btn.textContent = "Copy"), 1600);
+      console.log("Copy failed:", err);
+    }
+  }
 </script>
 
 </body>
 </html>
-
