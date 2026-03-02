@@ -390,9 +390,9 @@ h1 {
   let x = 0;
   let y = 0;
 
-  let dir = 1;                
-  let state = "walk";          
-  let transitionUntil = 0;      
+  let dir = 1;
+  let state = "walk";
+  let transitionUntil = 0;
 
   let lastT = performance.now();
   let lastActiveSection = "links";
@@ -432,10 +432,36 @@ h1 {
   }
 
   function render(){
-  const wing = Math.sin(performance.now()*0.015) * 4;
-  owl.style.transform =
-    `translate3d(${x}px, ${y}px, 0) rotate(${wing}deg)`;
-}
+    const wing = Math.sin(performance.now()*0.015) * 4;
+    owl.style.transform =
+      `translate3d(${x}px, ${y}px, 0) rotate(${wing}deg)`;
+  }
+
+  /* =========================================================
+     ✅ НОВЕ: "NO-FLY ZONE" — не підлітати на кнопки/карточку
+     ========================================================= */
+  function getNoFlyMinYForElement(el, margin = 18){
+    if (!el) return 0;
+    const r = el.getBoundingClientRect();
+    // Мінімальний Y (найвище) — нижче цього елемента + запас
+    return r.bottom + margin;
+  }
+
+  function getNoFlyMinY(){
+    const section = getActiveSectionId();
+
+    if (section === "links"){
+      const iconsEl = document.querySelector("#links .icons");
+      return getNoFlyMinYForElement(iconsEl, 18);
+    }
+
+    if (section === "resume"){
+      const cardEl = document.querySelector("#resume .resume-card");
+      return getNoFlyMinYForElement(cardEl, 18);
+    }
+
+    return 0;
+  }
 
   let hop = null;
 
@@ -456,46 +482,57 @@ h1 {
 
     const travel = 220 + Math.random() * 220;
     const endX = clamp(startX + dir * travel, 0, maxX());
-    const peakY = startY - (90 + Math.random() * 80);
+
+    // ✅ FIX: обмежуємо "висоту" польоту, щоб не лізло на кнопки/карточку
+    const rawPeakY = startY - (90 + Math.random() * 80);
+    const minY = getNoFlyMinY();
+    const peakY = clamp(rawPeakY, minY, startY);
 
     hop = {
       t0: now,
       dur: 1700 + Math.random() * 800,
       sx: startX, sy: startY,
       ex: endX,  ey: startY,
-      py: Math.max(0, peakY),
+      py: peakY,
+      minY: minY
     };
   }
 
   function updateHop(now){
-  if (!hop) return;
+    if (!hop) return;
 
-  const t = (now - hop.t0) / hop.dur;
+    const t = (now - hop.t0) / hop.dur;
 
-  if (t >= 1){
-    x = hop.ex;
-    y = hop.ey;
-    hop = null;
-    state = "walk";
-    setSpriteWalk();
-    return;
+    if (t >= 1){
+      x = hop.ex;
+      y = hop.ey;
+      hop = null;
+      state = "walk";
+      setSpriteWalk();
+      return;
+    }
+
+    const tt = easeInOut(t);
+
+    // X плавно
+    x = lerp(hop.sx, hop.ex, tt);
+
+    // Y дугою
+    const height = hop.sy - hop.py;
+    y = hop.sy - height * Math.sin(tt * Math.PI);
+
+    // ✅ FIX: не підніматись вище дозволеного (не залазити на кнопки)
+    const minY = Math.max(0, hop.minY ?? getNoFlyMinY());
+    y = Math.max(y, minY);
+
+    // ✅ і не провалюватись нижче землі
+    y = Math.min(y, baseYForSection());
   }
-
-  const tt = easeInOut(t);
-
-  // X плавно
-  x = lerp(hop.sx, hop.ex, tt);
-
-  // Y красивою дугою
-  const height = hop.sy - hop.py;
-
-  y = hop.sy - height * Math.sin(tt * Math.PI);
-}
 
   function startTransition(now){
     state = "transition";
     setSpriteFlyFront();
-    transitionUntil = now + 700; 
+    transitionUntil = now + 700;
   }
 
   function step(now){
@@ -513,7 +550,7 @@ h1 {
     const groundY = baseYForSection();
 
     if (state === "transition"){
-      y = groundY; 
+      y = groundY;
       if (now >= transitionUntil){
         state = "walk";
         owl.style.opacity = "0.95";
