@@ -51,177 +51,174 @@ body {
   background-attachment: fixed;
 }
 
-  @keyframes pageIn { to { opacity: 1; } }
+@keyframes pageIn { to { opacity: 1; } }
 
-  .container{
-    height: 100vh;
-    width: 100%;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
-  }
+.container{
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
 
-  .section{
-    height: 100vh;
-    scroll-snap-align: start;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 28px 18px;
-  }
+.section{
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 28px 18px;
+}
 
-  .inner{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+.inner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 
-    opacity: 0;
-    transform: translateY(14px);
-    transition: 0.7s ease;
-  }
+  opacity: 0;
+  transform: translateY(14px);
+  transition: 0.7s ease;
+}
 
-  .section.is-active .inner{
-    opacity: 1;
-    transform: translateY(0);
-  }
+.section.is-active .inner{
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  .avatar {
+.avatar {
   width: 180px;
   height: 180px;
   object-fit: cover;
   border-radius: 35px;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
-
-
   box-shadow: 0 25px 80px rgba(0,0,0,0.6);
 }
 
 .avatar:hover {
   transform: scale(1.06);
-
   box-shadow:
     0 30px 90px rgba(0,0,0,0.7),
     0 0 25px rgba(176,102,255,0.6),
     0 0 60px rgba(122,44,255,0.45);
 }
 
-  h1 {
-    font-size: 48px;
-    margin: 10px 0 8px 0;
-    background: linear-gradient(90deg, var(--blue), var(--blue2), #ffffff, var(--blue2), var(--blue));
-    background-size: 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 6s linear infinite;
-  }
+h1 {
+  font-size: 48px;
+  margin: 10px 0 8px 0;
+  background: linear-gradient(90deg, var(--blue), var(--blue2), #ffffff, var(--blue2), var(--blue));
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 6s linear infinite;
+}
 
-  @keyframes shine {
-    0% { background-position: 300%; }
-    100% { background-position: 0%; }
-  }
+@keyframes shine {
+  0% { background-position: 300%; }
+  100% { background-position: 0%; }
+}
 
-  .icons {
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 8px;
-  }
+.icons {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
 
-  .icons a {
-    display: inline-block;
-    border-radius: 14px;
-    transition: 0.25s ease;
-  }
+.icons a {
+  display: inline-block;
+  border-radius: 14px;
+  transition: 0.25s ease;
+}
 
-  .icons a:hover {
-    transform: translateY(-6px) scale(1.08);
-    filter: brightness(1.15);
-    box-shadow:
-      0 0 18px rgba(255,255,255,0.45),
-      0 0 40px rgba(176,102,255,0.55),
-      0 0 70px rgba(122,44,255,0.35);
-  }
+.icons a:hover {
+  transform: translateY(-6px) scale(1.08);
+  filter: brightness(1.15);
+  box-shadow:
+    0 0 18px rgba(255,255,255,0.45),
+    0 0 40px rgba(176,102,255,0.55),
+    0 0 70px rgba(122,44,255,0.35);
+}
 
-  .icon {
-    height: 50px;
-    width: auto;
-    cursor: pointer;
-    border-radius: 12px;
-    display: block;
-  }
+.icon {
+  height: 50px;
+  width: auto;
+  cursor: pointer;
+  border-radius: 12px;
+  display: block;
+}
 
-  .hint{
-    margin-top: 10px;
-    font-size: 13px;
-    opacity: 0.75;
-  }
+.hint{
+  margin-top: 10px;
+  font-size: 13px;
+  opacity: 0.75;
+}
 
-  .resume-card{
-    width: min(860px, 94vw);
-    background: rgba(10, 0, 20, 0.45);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 22px;
-    padding: 22px 18px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    text-align: left;
-    box-shadow: 0 20px 70px rgba(0,0,0,0.45);
-  }
+.resume-card{
+  width: min(860px, 94vw);
+  background: rgba(10, 0, 20, 0.45);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 22px;
+  padding: 22px 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: left;
+  box-shadow: 0 20px 70px rgba(0,0,0,0.45);
+}
 
-  .resume-title{
-    font-size: 28px;
-    margin: 0 0 8px 0;
-  }
+.resume-title{
+  font-size: 28px;
+  margin: 0 0 8px 0;
+}
 
-  .resume-sub{
-    margin: 0 0 14px 0;
-    opacity: 0.85;
-    line-height: 1.5;
-  }
+.resume-sub{
+  margin: 0 0 14px 0;
+  opacity: 0.85;
+  line-height: 1.5;
+}
 
-  .grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-top: 10px;
-  }
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 10px;
+}
 
-  .block h3{
-    margin: 0 0 8px 0;
-    font-size: 16px;
-    letter-spacing: 0.2px;
-    opacity: 0.95;
-  }
+.block h3{
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  opacity: 0.95;
+}
 
-  .block ul{
-    margin: 0;
-    padding-left: 18px;
-    line-height: 1.55;
-    opacity: 0.92;
-  }
+.block ul{
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.55;
+  opacity: 0.92;
+}
 
-  .contacts{
-    margin-top: 14px;
-    opacity: 0.92;
-    line-height: 1.6;
-  }
+.contacts{
+  margin-top: 14px;
+  opacity: 0.92;
+  line-height: 1.6;
+}
 
-  .pill{
-    display: inline-block;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(122,44,255,0.22);
-    border: 1px solid rgba(176,102,255,0.35);
-    margin-right: 8px;
-    margin-top: 6px;
-    font-size: 13px;
-  }
+.pill{
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(122,44,255,0.22);
+  border: 1px solid rgba(176,102,255,0.35);
+  margin-right: 8px;
+  margin-top: 6px;
+  font-size: 13px;
+}
 
-  .copy-btn{
+.copy-btn{
   margin-left: 10px;
   padding: 4px 10px;
   font-size: 12px;
@@ -245,19 +242,30 @@ body {
   border: 1px solid rgba(0,255,160,0.6);
 }
 
-  @media (max-width: 720px){
-    .grid{ grid-template-columns: 1fr; }
-  }
+/*  OWL CSS */
+.owl{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: auto;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.95;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.55))
+          drop-shadow(0 0 20px rgba(176,102,255,0.35));
+}
 
-  @media (max-width: 480px) {
-    .avatar { width: 150px; height: 150px; }
-    h1 { font-size: 42px; }
-    .icon { height: 40px; }
-  }
+@media (max-width: 480px){
+  .owl{ width: 90px; }
+}
 </style>
 </head>
 
 <body>
+
+<img id="owl" class="owl" src="owlanatomic/owlfront.PNG" alt="Owl">
 
 <div class="container" id="container">
 
@@ -360,6 +368,209 @@ body {
   container.addEventListener('scroll', updateActive);
   updateActive();
 
+  /*  OWL JS */
+  const owl = document.getElementById("owl");
+
+  const OWL = {
+    flyFront: "owlanatomic/owlflywront.PNG",
+    walkR:    "owlanatomic/rightgo.PNG",
+    walkL:    "owlanatomic/leftgo.PNG",
+    flyR:     "owlanatomic/rightfly.PNG",
+    flyL:     "owlanatomic/leftfly.PNG",
+  };
+
+  function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+  function easeInOut(t){ return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2; }
+
+  let vw = window.innerWidth;
+  let vh = window.innerHeight;
+
+  let rect = { w: 120, h: 120 };
+  let x = 0;
+  let y = 0;
+
+  let dir = 1;                
+  let state = "walk";          
+  let transitionUntil = 0;      
+
+  let lastT = performance.now();
+  let lastActiveSection = "links";
+
+  function getActiveSectionId(){
+    const active = document.querySelector(".section.is-active");
+    return active ? active.id : "links";
+  }
+
+  function measure(){
+    vw = window.innerWidth;
+    vh = window.innerHeight;
+    const r = owl.getBoundingClientRect();
+    rect.w = r.width || rect.w;
+    rect.h = r.height || rect.h;
+  }
+
+  function baseYForSection(){
+    const bottom = 0;
+    return vh - rect.h - bottom;
+  }
+
+  function maxX(){
+    return Math.max(0, vw - rect.w);
+  }
+
+  function setSpriteWalk(){
+    owl.src = (dir === 1) ? OWL.walkR : OWL.walkL;
+  }
+
+  function setSpriteFlyFront(){
+    owl.src = OWL.flyFront;
+  }
+
+  function setSpriteFlySide(){
+    owl.src = (dir === 1) ? OWL.flyR : OWL.flyL;
+  }
+
+  function render(){
+  const wing = Math.sin(performance.now()*0.015) * 4;
+  owl.style.transform =
+    `translate3d(${x}px, ${y}px, 0) rotate(${wing}deg)`;
+}
+
+  let hop = null;
+
+  function maybeStartHop(now){
+    if (Math.random() < 0.003){
+      startHop(now);
+      return true;
+    }
+    return false;
+  }
+
+  function startHop(now){
+    state = "hop";
+    setSpriteFlySide();
+
+    const startX = x;
+    const startY = y;
+
+    const travel = 220 + Math.random() * 220;
+    const endX = clamp(startX + dir * travel, 0, maxX());
+    const peakY = startY - (90 + Math.random() * 80);
+
+    hop = {
+      t0: now,
+      dur: 1700 + Math.random() * 800,
+      sx: startX, sy: startY,
+      ex: endX,  ey: startY,
+      py: Math.max(0, peakY),
+    };
+  }
+
+  function updateHop(now){
+  if (!hop) return;
+
+  const t = (now - hop.t0) / hop.dur;
+
+  if (t >= 1){
+    x = hop.ex;
+    y = hop.ey;
+    hop = null;
+    state = "walk";
+    setSpriteWalk();
+    return;
+  }
+
+  const tt = easeInOut(t);
+
+  // X плавно
+  x = lerp(hop.sx, hop.ex, tt);
+
+  // Y красивою дугою
+  const height = hop.sy - hop.py;
+
+  y = hop.sy - height * Math.sin(tt * Math.PI);
+}
+
+  function startTransition(now){
+    state = "transition";
+    setSpriteFlyFront();
+    transitionUntil = now + 700; 
+  }
+
+  function step(now){
+    const dt = (now - lastT) / 1000;
+    lastT = now;
+
+    if (rect.w === 120) measure();
+
+    const currentSection = getActiveSectionId();
+    if (currentSection !== lastActiveSection && state !== "transition"){
+      startTransition(now);
+      lastActiveSection = currentSection;
+    }
+
+    const groundY = baseYForSection();
+
+    if (state === "transition"){
+      y = groundY; 
+      if (now >= transitionUntil){
+        state = "walk";
+        owl.style.opacity = "0.95";
+        setSpriteWalk();
+      }
+      render();
+      requestAnimationFrame(step);
+      return;
+    }
+
+    if (state !== "hop") y = groundY;
+
+    if (state === "hop"){
+      updateHop(now);
+      render();
+      requestAnimationFrame(step);
+      return;
+    }
+
+    // WALK
+    const walkSpeed = 80;
+    x += dir * walkSpeed * dt;
+
+    if (x >= maxX()){
+      x = maxX();
+      dir = -1;
+      setSpriteWalk();
+      if (Math.random() < 0.25) startHop(now);
+    } else if (x <= 0){
+      x = 0;
+      dir = 1;
+      setSpriteWalk();
+      if (Math.random() < 0.25) startHop(now);
+    } else {
+      maybeStartHop(now);
+    }
+
+    render();
+    requestAnimationFrame(step);
+  }
+
+  // start
+  measure();
+  y = baseYForSection();
+  x = clamp(x, 0, maxX());
+  setSpriteWalk();
+  render();
+  requestAnimationFrame(step);
+
+  window.addEventListener("resize", () => {
+    measure();
+    y = baseYForSection();
+    x = clamp(x, 0, maxX());
+    render();
+  });
+
+  /* copyEmail */
   async function copyEmail() {
     const emailEl = document.getElementById("emailText");
     const btn = document.getElementById("copyBtn");
