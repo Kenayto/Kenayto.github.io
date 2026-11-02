@@ -289,7 +289,7 @@ h1 {
           <img src="icons/TikTok.jpg" class="icon" alt="TikTok">
         </a>
 
-        <a href="https://www.youtube.com/@KenayTo22" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.youtube.com/@daniilshunynets_kenayto" target="_blank" rel="noopener noreferrer">
           <img src="icons/YouTube.jpg" class="icon" alt="YouTube">
         </a>
 
@@ -441,10 +441,7 @@ h1 {
     owl.style.transform =
       `translate3d(${x}px, ${y}px, 0) rotate(${wing}deg)`;
   }
-
-  /* =========================================================
-     ✅ НОВЕ: "NO-FLY ZONE" — не підлітати на кнопки/карточку
-     ========================================================= */
+  
   function getNoFlyMinYForElement(el, margin = 18){
     if (!el) return 0;
     const r = el.getBoundingClientRect();
@@ -488,7 +485,7 @@ h1 {
     const travel = 220 + Math.random() * 220;
     const endX = clamp(startX + dir * travel, 0, maxX());
 
-    // ✅ FIX: обмежуємо "висоту" польоту, щоб не лізло на кнопки/карточку
+    // обмежуємо "висоту" польоту, щоб не лізло на кнопки/карточку
     const rawPeakY = startY - (90 + Math.random() * 80);
     const minY = getNoFlyMinY();
     const peakY = clamp(rawPeakY, minY, startY);
@@ -526,11 +523,11 @@ h1 {
     const height = hop.sy - hop.py;
     y = hop.sy - height * Math.sin(tt * Math.PI);
 
-    // ✅ FIX: не підніматись вище дозволеного (не залазити на кнопки)
+    // не підніматись вище дозволеного (не залазити на кнопки)
     const minY = Math.max(0, hop.minY ?? getNoFlyMinY());
     y = Math.max(y, minY);
 
-    // ✅ і не провалюватись нижче землі
+    // не провалюватись нижче землі
     y = Math.min(y, baseYForSection());
   }
 
